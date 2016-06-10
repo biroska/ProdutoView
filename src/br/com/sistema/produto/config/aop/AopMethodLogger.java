@@ -17,20 +17,35 @@ public class AopMethodLogger {
 			"!execution(* br.com.sistema.produto.model..*(..)) && " +   // Não capturar classes do pacote de de configuracao 
             "execution(* br.com.sistema.produto..*(..))")
 	public void logBefore(JoinPoint joinPoint) {
-
-		System.out.println("******");
-		System.out.println("Class : " + joinPoint.getSignature().getDeclaringTypeName());
-		System.out.println("method : " + joinPoint.getSignature().getName());
-		System.out.println("******");
 		
-		String name = "lordofthejars";
+		String parametersList = buildMethodsParameterString( joinPoint );
 
-		logger.info("Hello from Bar.");
-
-		logger.debug("In bar my name is {}.", name);
+		logger.info("[" + joinPoint.getSignature().getDeclaringTypeName() + "." +
+		                  joinPoint.getSignature().getName() + " ( " +
+		                  parametersList + " ) ]" );
+	}
+	
+	private String buildMethodsParameterString( JoinPoint joinPoint ){
 		
-		logger.error("com.lordofthejars.foo {}", "TESTE....");
+		Object[] signatureArgs = joinPoint.getArgs();
+		String args = "";
+		int lastIndex = -1;
 		
+		if ( signatureArgs == null || signatureArgs.length == 0 ){
+			return "";
+		}
+		
+		for (Object obj : signatureArgs) {
+			args += args + obj.getClass().getSimpleName() + ", ";
+		}
+		
+		lastIndex = args.lastIndexOf(", ");
+		
+		if ( lastIndex > -1 ){
+			args = args.substring(0, lastIndex );
+		}
+		
+		return args;
 	}
 
 }
