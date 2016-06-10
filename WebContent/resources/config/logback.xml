@@ -66,9 +66,13 @@
 	</appender>
 	
 	<!-- Send logs to both console and file audit -->
-	<logger name="poc" level="debug" additivity="false">
+	<logger name="br.com.sistema.produto.config" level="info" additivity="false">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE-AUDIT" />
+	</logger>
+	
+		<!-- Send logs to both console and file audit -->
+	<logger name="br.com.sistema.produto.config" level="debug" additivity="false">
 		<appender-ref ref="FILE-DEBUG" />
 	</logger>
 

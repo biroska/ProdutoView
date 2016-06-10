@@ -25,6 +25,14 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
+		<resources>
+	        <resource>
+	            <directory>WebContent/resources/config</directory>
+	            <filtering>true</filtering> 
+	        </resource>
+	    </resources>
+		
 	</build>
 
 	<properties>
