@@ -1,6 +1,8 @@
 package br.com.sistema.produto.config.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -17,20 +19,56 @@ public class AopMethodLogger {
 			"!execution(* br.com.sistema.produto.model..*(..)) && " +   // Não capturar classes do pacote de de configuracao 
             "execution(* br.com.sistema.produto..*(..))")
 	public void logBefore(JoinPoint joinPoint) {
-
-		System.out.println("******");
-		System.out.println("Class : " + joinPoint.getSignature().getDeclaringTypeName());
-		System.out.println("method : " + joinPoint.getSignature().getName());
-		System.out.println("******");
 		
-		String name = "lordofthejars";
-
-		logger.info("Hello from Bar.");
-
-		logger.debug("In bar my name is {}.", name);
+		logger.info("[in] - " + buildLogString( joinPoint ) + " )" );
+	}
+	
+	@AfterReturning("!execution(* br.com.sistema.produto.config..*(..)) && " +  // Não capturar classes do pacote de de configuracao 
+					"!execution(* br.com.sistema.produto.model..*(..)) && " +   // Não capturar classes do pacote de de configuracao 
+					"execution(* br.com.sistema.produto..*(..))")
+	public void logAfter(JoinPoint joinPoint) {
 		
-		logger.error("com.lordofthejars.foo {}", "TESTE....");
+		logger.info("[out] - " + buildLogString( joinPoint ) + " )" );
+	}
+	
+	@AfterThrowing( pointcut = "execution(* br.com.sistema..*(..))",
+		      		throwing= "error")
+    public void logAfterThrowing(JoinPoint joinPoint, Throwable error) {
+		logger.error("[An error occurred]: ", error );
+	}
+	
+	private String buildLogString( JoinPoint joinPoint ){
 		
+		String parametersList = buildMethodsParameterString( joinPoint );
+		
+		String logString = joinPoint.getSignature().getDeclaringTypeName() + "." +
+						   joinPoint.getSignature().getName() + "( " +
+						   parametersList;
+		
+		return logString;
+	}
+	
+	private String buildMethodsParameterString( JoinPoint joinPoint ){
+		
+		Object[] signatureArgs = joinPoint.getArgs();
+		String args = "";
+		int lastIndex = -1;
+		
+		if ( signatureArgs == null || signatureArgs.length == 0 ){
+			return "";
+		}
+		
+		for (Object obj : signatureArgs) {
+			args += obj.getClass().getSimpleName() + ", ";
+		}
+		
+		lastIndex = args.lastIndexOf(", ");
+		
+		if ( lastIndex > -1 ){
+			args = args.substring(0, lastIndex );
+		}
+		
+		return args;
 	}
 
 }
