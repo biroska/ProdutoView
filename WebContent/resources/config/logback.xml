@@ -14,13 +14,13 @@
 	
 	<appender name="FILE-AUDIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${DEV_HOME}/${INFO_FILE_NAME}.log</file>
-		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+		<!-- <filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>INFO</level>
 			<onMatch>ACCEPT</onMatch>
 			<onMismatch>DENY</onMismatch>
-		</filter>
+		</filter> -->
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - [%p] %msg%n</Pattern>
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -36,7 +36,7 @@
 	<appender name="FILE-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${DEV_HOME}/${DEBUG_FILE_NAME}.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - [%p] %msg%n</Pattern>
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -52,7 +52,7 @@
 	<appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${DEV_HOME}/${ERROR_FILE_NAME}.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - [%p] %msg%n</Pattern>
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -66,9 +66,13 @@
 	</appender>
 	
 	<!-- Send logs to both console and file audit -->
-	<logger name="poc" level="debug" additivity="false">
+	<logger name="br.com.sistema.produto.config" level="info" additivity="false">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE-AUDIT" />
+	</logger>
+	
+	<!-- Send logs to both console and file audit -->
+	<logger name="br.com.sistema.produto.config" level="debug" additivity="false">
 		<appender-ref ref="FILE-DEBUG" />
 	</logger>
 

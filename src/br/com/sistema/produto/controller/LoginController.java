@@ -17,7 +17,7 @@ public class LoginController {
 	
     @RequestMapping(value="/login", method = RequestMethod.POST )
     public ModelAndView login( @ModelAttribute User user, HttpServletRequest request, HttpServletResponse response ) {
-
+    	
     	request.getSession().setAttribute("user", user );
     	
     	ModelAndView modelAndView = new ModelAndView("home");
