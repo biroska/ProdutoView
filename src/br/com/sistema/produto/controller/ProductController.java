@@ -10,6 +10,8 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +30,8 @@ import br.com.sistema.produto.util.WriteImage;
 @Controller
 @RequestMapping(value="/product")
 public class ProductController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	@RequestMapping( value={"/", "/product"})
 	public ModelAndView mainPage( ) {
@@ -64,12 +68,12 @@ public class ProductController {
 												  Constants.FILES.IMAGE_FILE_SEPARATOR + 
 												  Constants.FILES.IMAGE_FILE_EXTENSION );
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
+			logger.error("[An error occurred]: ", e );
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
+			logger.error("[An error occurred]: ", e );
 		}
 		return base64Image;
 	}

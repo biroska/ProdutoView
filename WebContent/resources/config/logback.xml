@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 <configuration>
 
-	<property name="DEV_HOME" value="C:/bvsistemas/outros/projetos/logs" />
+	<property name="DEV_HOME" value="C:/Users/Notebook/Desktop/testeImagens" />
+<!-- 	<property name="DEV_HOME" value="C:/bvsistemas/outros/projetos/logs" /> -->
 	<property name="INFO_FILE_NAME" value="info" />
 	<property name="DEBUG_FILE_NAME" value="debug" />
 	<property name="ERROR_FILE_NAME" value="error" />

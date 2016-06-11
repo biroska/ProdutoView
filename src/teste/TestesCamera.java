@@ -17,7 +17,6 @@ public class TestesCamera {
 		try {
 			ImageIO.write(webcam.getImage(), "PNG", new File("hello-world.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
