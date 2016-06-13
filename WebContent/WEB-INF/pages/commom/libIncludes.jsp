@@ -8,3 +8,4 @@
 <link href="<c:url value='/resources/css/systemStyle.css' />" rel="stylesheet"></link>
 <script src="<c:url value='/resources/js/dynatable/jquery.dynatable.js' />" ></script>
 <link href="<c:url value='/resources/css/dynatable/jquery.dynatable.css' />" rel="stylesheet"></link>
+<script src="<c:url value='/resources/js/product.js' />" ></script>

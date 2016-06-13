@@ -13,7 +13,7 @@
 				</li> 
 			</ul>
 		</li>
-		<li role="presentation"><a href="${pageContext.request.contextPath}/product/">Produto</a></li>
+		<li role="presentation"><a onclick="clearMenuSelection();" href="${pageContext.request.contextPath}/product/">Produto</a></li>
 	</ul>
 </div>
 </div>
