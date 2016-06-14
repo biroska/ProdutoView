@@ -3,14 +3,14 @@
 <div class="container" style="width: 98%;" >
 <div class="bs-example" data-example-id="nav-tabs-with-dropdown">
 	<ul class="nav nav-tabs">
-		<li role="presentation" class="dropdown ${MENU == null || MENU == "" ? "active" : null }">
+		<li role="presentation" class="dropdown ${MENU == "PRINCIPAL" || MENU == null ? "active" : null }">
 		
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 				Cadastros Básicos <span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu">
 				<li role="presentation">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/login/main/">
 						Tipos
 					</a>
 				</li> 

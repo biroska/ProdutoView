@@ -15,7 +15,7 @@ import br.com.sistema.produto.model.User;
 @RequestMapping(value="/login")
 public class LoginController {
 	
-    @RequestMapping(value="/login", method = RequestMethod.POST )
+    @RequestMapping( value={"/login", "/main"}, method = {RequestMethod.POST, RequestMethod.GET} )
     public ModelAndView login( @ModelAttribute User user, HttpServletRequest request, HttpServletResponse response ) {
     	
     	request.getSession().setAttribute("user", user );

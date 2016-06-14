@@ -20,6 +20,8 @@ public class MenuInterceptor implements HandlerInterceptor {
     	
     	if ( StringUtils.isNotBlank( menuNavigation ) ){
     		httpServletRequest.getSession( true ).setAttribute( Constants.MENU_PARAM, menuNavigation );
+    	} else {
+    		httpServletRequest.getSession( true ).setAttribute( Constants.MENU_PARAM, null );
     	}
     	
     	return true;

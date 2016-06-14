@@ -4,8 +4,9 @@ import org.apache.commons.lang3.StringUtils;
 
 public enum MenuEnum {
 
+	MAIN("PRINCIPAL", "/ProdutoView/login/main/"),
 	PRODUTO("PRODUTO", "/ProdutoView/product/"),
-	BUSCA_PRODUTO("PRODUTO", "/ProdutoView/searchProduct/");
+	BUSCA_PRODUTO("PRODUTO", "/ProdutoView/product/searchProduct/");
 	
 	private String menu;
 	
