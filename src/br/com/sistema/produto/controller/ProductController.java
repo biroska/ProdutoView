@@ -43,6 +43,18 @@ public class ProductController {
 		
 		return modelAndView;
 	}
+	
+
+	@RequestMapping( value={"/searchProduct"})
+	public ModelAndView searchProduct( ) {
+		
+		ModelAndView modelAndView = new ModelAndView("consultarProduto");
+		
+		modelAndView.addObject("user", new User() );
+		modelAndView.addObject("produto", new Product() );
+		
+		return modelAndView;
+	}
 
 	@RequestMapping( value={"/save"}, method = RequestMethod.POST, 
 					 produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE )
