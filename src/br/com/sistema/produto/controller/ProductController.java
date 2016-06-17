@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.sistema.produto.model.Product;
 import br.com.sistema.produto.model.User;
+import br.com.sistema.produto.service.Ifacade;
 import br.com.sistema.produto.util.Constants;
 import br.com.sistema.produto.util.JsonParser;
 import br.com.sistema.produto.util.Util;
@@ -32,6 +34,9 @@ import br.com.sistema.produto.util.WriteImage;
 public class ProductController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+	
+	@Autowired
+	private Ifacade facade;
 	
 	@RequestMapping( value={"/", "/product"})
 	public ModelAndView mainPage( ) {
@@ -52,6 +57,8 @@ public class ProductController {
 		
 		modelAndView.addObject("user", new User() );
 		modelAndView.addObject("produto", new Product() );
+		
+		facade.searchProducts( new Product( "5", "Produto_5" , "Bla bla 5" ) );
 		
 		return modelAndView;
 	}
@@ -119,5 +126,10 @@ public class ProductController {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-	}	
+	}
+
+	public void setFacade(Ifacade facade) {
+		this.facade = facade;
+	}
+		
 }

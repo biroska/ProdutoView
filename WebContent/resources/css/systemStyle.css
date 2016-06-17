@@ -4,7 +4,7 @@
 	height: 40px !important;
 }
 
-.table-striped>tbody>tr:nth-child(odd)>td, 
+/* .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: #f4f7f9;
- }
+ } */
