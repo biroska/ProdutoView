@@ -9,9 +9,6 @@ $(document).ready(function() {
 	
 	disableCamera();
 	hideCameraPicture();
-	
-	$('#tabelaProdutos').dynatable();
-	
 });
 
 function saveProduct(){
